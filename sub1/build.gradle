@@ -1,0 +1,23 @@
+
+
+remotes {
+  rootserver {
+    host = 'localhost'
+    user = System.properties['user.name']
+    identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+  }
+}
+
+//println project.remotes
+
+//conf {
+//  println project.name + ' conf ' + project.remotes
+//  ext {
+//    archiveDir = System.properties['user.home'] + '/archive/'
+//    deployDir = System.properties['user.home'] + '/pef/'
+//    if (destination.equals('rootserver')) {
+//      remote = remotes.rootserver
+//    }
+//  }
+//}
+

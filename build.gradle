@@ -1,0 +1,88 @@
+
+if (project.name == 'CHANGE_ME') {
+  throw new Exception("PEF Build Error: Change settings.gradle default project name ${project.name}");
+}
+
+
+allprojects {
+  apply from: rootProject.projectDir.toString() + '/pef_build/build.gradle'
+
+  conf << {
+    println 'allprojects conf ' + project.name + ' remotes ' + project.remotes + ' destination ' + destination
+    ext {
+      if (destination.equals('prod')) {
+        archiveDir = '~/archive/'
+        deployDir = '~/pef/'
+        remote = remotes.prodhost
+      } else if (destination.equals('test')) {
+        archiveDir = '/home/peter/archive/'
+        deployDir = '/home/peter/pef/'
+        remote = remotes.testhost
+      } else if (destination.equals('dev')) {
+        remote = remotes.devhost
+      } else if (destination.equals('local')) {
+        // override deploy dir
+        archiveDir = System.properties['user.home'] + '/archive_local/'
+        deployDir = System.properties['user.home'] + '/deploy_local/'
+      }
+    }
+  }
+}
+
+remotes {
+  prodhost {
+    role 'prod'
+    host = 'pefserver'
+    user = 'pefadmin'
+    identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+  }
+  testhost {
+    role 'test'
+    host = 'vps'
+    user = 'peter'
+    identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+  }
+  devhost {
+    role 'dev'
+    host = 'localhost'
+    user = System.properties['user.name']
+    identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+  }
+}
+
+//subprojects {
+//  remotes {
+//    prodhost {
+//      role 'prod'
+//      host = 'pefserver'
+//      user = 'pefadmin'
+//      identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+//    }
+//    testhost {
+//      role 'test'
+//      host = 'vps'
+//      user = 'peter'
+//      identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+//    }
+//    devhost {
+//      role 'dev'
+//      host = 'localhost'
+//      user = System.properties['user.name']
+//      identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+//    }
+//  }
+//  conf {
+//    println project.name + ' conf ' + project.remotes
+//    ext {
+//      if (destination.equals('prod')) {
+//        remote = remotes.prodhost
+//      } else if (destination.equals('test')) {
+//        remote = remotes.testhost
+//      } else if (destination.equals('dev')) {
+//        remote = remotes.devhost
+//      } else if (destination.equals('rootserver')) {
+//        remote = remotes.rootserver
+//      }
+//    }
+//  }
+//}
