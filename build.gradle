@@ -15,8 +15,8 @@ allprojects {
         deployDir = '~/pef/'
         remote = remotes.prodhost
       } else if (destination.equals('test')) {
-        archiveDir = '/home/peter/archive/'
-        deployDir = '/home/peter/pef/'
+        archiveDir = '/home/test/archive/'
+        deployDir = '/home/test/pef/'
         remote = remotes.testhost
       } else if (destination.equals('dev')) {
         remote = remotes.devhost
@@ -32,14 +32,14 @@ allprojects {
 remotes {
   prodhost {
     role 'prod'
-    host = 'pefserver'
-    user = 'pefadmin'
+    host = 'prodserver'
+    user = 'produser'
     identity = file("${System.properties['user.home']}/.ssh/id_rsa")
   }
   testhost {
     role 'test'
-    host = 'vps'
-    user = 'peter'
+    host = 'testserver'
+    user = 'testuser'
     identity = file("${System.properties['user.home']}/.ssh/id_rsa")
   }
   devhost {
@@ -50,39 +50,3 @@ remotes {
   }
 }
 
-//subprojects {
-//  remotes {
-//    prodhost {
-//      role 'prod'
-//      host = 'pefserver'
-//      user = 'pefadmin'
-//      identity = file("${System.properties['user.home']}/.ssh/id_rsa")
-//    }
-//    testhost {
-//      role 'test'
-//      host = 'vps'
-//      user = 'peter'
-//      identity = file("${System.properties['user.home']}/.ssh/id_rsa")
-//    }
-//    devhost {
-//      role 'dev'
-//      host = 'localhost'
-//      user = System.properties['user.name']
-//      identity = file("${System.properties['user.home']}/.ssh/id_rsa")
-//    }
-//  }
-//  conf {
-//    println project.name + ' conf ' + project.remotes
-//    ext {
-//      if (destination.equals('prod')) {
-//        remote = remotes.prodhost
-//      } else if (destination.equals('test')) {
-//        remote = remotes.testhost
-//      } else if (destination.equals('dev')) {
-//        remote = remotes.devhost
-//      } else if (destination.equals('rootserver')) {
-//        remote = remotes.rootserver
-//      }
-//    }
-//  }
-//}
