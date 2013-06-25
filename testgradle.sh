@@ -214,9 +214,8 @@ T3
 T4
 T5
 T6
+stat=$?
 
 } 2>&1 | tee $0.log 
 
-bell
-
-
+exit $stat
