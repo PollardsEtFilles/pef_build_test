@@ -1,3 +1,4 @@
+#!/bin/bash
 
 source shunit_assert.sh
 
@@ -206,16 +207,10 @@ function T6() {
   assertStat $? "T6 install sub1 no installVersion"
 }
 
-{ # braces for logging
-
-T1
-T2
+T1 
+T2 
 T3
 T4
 T5
 T6
-stat=$?
 
-} 2>&1 | tee $0.log 
-
-exit $stat

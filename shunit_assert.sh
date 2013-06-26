@@ -1,12 +1,12 @@
 
 assertStat() {
-	if [ $1 -ne 0 ]; then 
-	  echo "assertStat: $2 failed, exiting.." >&2
-	  bell
-	  exit 1
+  if [ $1 -ne 0 ]; then 
+    echo "assertStat: $2 failed, exiting.." >&2
+    bell
+    exit 1
   else
-     echo "assertStat: $2 passed"
-	fi
+    echo "assertStat: $2 passed"
+  fi
 }
 
 assertStatFailed() {
