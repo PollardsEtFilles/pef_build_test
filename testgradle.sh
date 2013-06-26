@@ -1,6 +1,8 @@
 #!/bin/bash
 
 source shunit_assert.sh
+set -e
+set -o pipefail
 
 # Catalogue of tests
 # T1 main project with a buildNumber
@@ -207,10 +209,12 @@ function T6() {
   assertStat $? "T6 install sub1 no installVersion"
 }
 
+{ # braces for logging
 T1 
 T2 
 T3
 T4
 T5
 T6
+} 2>&1 | tee $0.log 
 
