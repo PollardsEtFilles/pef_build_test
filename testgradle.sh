@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source shunit_assert.sh
-set -e
 set -o pipefail
 
 # Catalogue of tests
