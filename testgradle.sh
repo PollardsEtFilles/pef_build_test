@@ -208,6 +208,12 @@ function T6() {
   assertStat $? "T6 install sub1 no installVersion"
 }
 
+function T7() {
+  before
+  gradle --settings-file settings.gradle.sub  pyTest
+  assertStat $? "T7 pyTest failed"
+}
+
 { # braces for logging
 T1 
 T2 
@@ -215,5 +221,6 @@ T3
 T4
 T5
 T6
+T7
 } 2>&1 | tee $0.log 
 

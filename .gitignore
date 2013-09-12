@@ -1,4 +1,4 @@
-/build
+build
 /.gradle
 /attic
 /bin
@@ -7,3 +7,5 @@
 *.bak
 *.log
 *.tmp
+__pycache__
+*.pyc
