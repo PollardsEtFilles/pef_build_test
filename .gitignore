@@ -1,9 +1,10 @@
-build
 /.gradle
 /attic
 /bin
 /.classpath
-/.settings
+/pef_build
+build
+.settings
 *.bak
 *.log
 *.tmp
