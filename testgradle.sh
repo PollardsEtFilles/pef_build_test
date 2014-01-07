@@ -211,8 +211,17 @@ function T6() {
 function T7() {
   before
   gradle --settings-file settings.gradle.sub  pyTest
-  assertStat $? "T7 pyTest failed"
+  assertStat $? "T7 pyTest unittest test"
 }
+
+function T8() {
+  before
+#  gradle busterUnitTest mochaBddTest mochaTddTest
+#  assertStat $? "T8 Javascript unittest tests"
+  gradle --settings-file settings.gradle.sub busterUnitTest mochaBddTest mochaTddTest
+  assertStat $? "T8 Javascript sub project unittest tests"
+}
+
 
 { # braces for logging
 T1 
@@ -222,5 +231,6 @@ T4
 T5
 T6
 T7
+T8
 } 2>&1 | tee $0.log 
 

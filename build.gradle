@@ -50,3 +50,8 @@ remotes {
   }
 }
 
+task gradleTest(type: Exec) {
+  workingDir '.'
+  commandLine rootProject.projectDir.toString() + '/testgradle.sh'
+}
+
