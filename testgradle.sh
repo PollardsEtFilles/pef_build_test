@@ -28,6 +28,10 @@ else
   dhome="${HOME}/deploy_local"
   ahome="${HOME}/archive_local"
 fi
+
+mkdir -p $dhome
+mkdir -p $ahome
+
 echo "Running tests for target=$target userhomedir=$thome deploydir=$dhome archivedir=$ahome"
 
 function before() {
