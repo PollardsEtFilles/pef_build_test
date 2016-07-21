@@ -1,7 +1,4 @@
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.5'
-}
 
 if (project.name == 'CHANGE_ME') {
   throw new Exception("PEF Build Error: Change settings.gradle default project name ${project.name}");
